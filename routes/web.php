@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +31,14 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+//category controller
+
+Route::get('/category/all',[CategoryController::class, 'AllCat'])->name('all.category');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users = User::all();
     // $users = DB::table('users')->get();
     return view('admin.admin_master', compact('users'));
 })->name('dashboard');
+
+//categories
